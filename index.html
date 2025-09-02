@@ -1,14 +1,46 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/curriculum-vitae/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>个人简历</title>
-    <script type="module" crossorigin src="/curriculum-vitae/assets/index-B6K8wm4T.js"></script>
-    <link rel="stylesheet" crossorigin href="/curriculum-vitae/assets/index-UfuzWE-U.css">
-  </head>
-  <body>
-    <div id="app"></div>
-  </body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><link rel="icon" type="image/svg+xml" href="/curriculum-vitae/vite.svg"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>个人简历</title><script type="module" crossorigin src="/curriculum-vitae/assets/index-BCjbscLw.js"></script><link rel="stylesheet" crossorigin href="/curriculum-vitae/assets/index-CWuYqVW8.css"></head><body><div id="app"></div><script>// 检查本地存储是否已选择不再显示
+    if (!localStorage.getItem('hideLinkAlert')) {
+      const linkList = 'https://hmxy.neocities.org/#/simplified-resume,https://curriculum-vitae-hmxy.netlify.app/#/simplified-resume,https://curriculum-vita.pages.dev/#/simplified-resume,https://heimaxiaoyang.github.io/curriculum-vitae/#/simplified-resume';
+      // 创建弹框元素
+      const modal = document.createElement('div');
+      modal.style.position = 'fixed';
+      modal.style.top = '0';
+      modal.style.left = '0';
+      modal.style.width = '100vw';
+      modal.style.height = '100vh';
+      modal.style.background = 'rgba(0,0,0,0.3)';
+      modal.style.display = 'flex';
+      modal.style.alignItems = 'center';
+      modal.style.justifyContent = 'center';
+      modal.style.zIndex = '9999';
+
+      modal.innerHTML = `
+        <div style="background:#fff;padding:24px 32px;border-radius:8px;max-width:90vw;box-shadow:0 2px 8px rgba(0,0,0,0.2);min-width:260px;">
+          <div style="margin-bottom:12px;white-space:pre-line;font-size:15px;">
+            如果访问过慢请跳转其他链接：
+            <div style="margin-top:3px;">
+              ${
+                linkList.split(',').map(link =>
+                  `<a href="${link.trim()}" target="_blank" rel="noopener" style="display:inline-block;margin:2px 0;color:#1677ff;text-decoration:underline;word-break:break-all;">${link.trim()}</a>`
+                ).join('<br>')
+              }
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+            <label style="display:flex;align-items:center;margin:0;font-size:14px;">
+              <input type="checkbox" id="hideLinkAlertCheckbox" style="margin-right:8px;">
+              不再显示
+            </label>
+            <button id="closeLinkAlertBtn" style="padding:6px 18px;background:#1677ff;color:#fff;border:none;border-radius:4px;cursor:pointer;">关闭</button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+
+      document.getElementById('closeLinkAlertBtn').onclick = function() {
+        if (document.getElementById('hideLinkAlertCheckbox').checked) {
+          localStorage.setItem('hideLinkAlert', '1');
+        }
+        modal.remove();
+      };
+    }</script></body></html>
